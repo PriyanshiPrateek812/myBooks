@@ -1,0 +1,24 @@
+<%- include('partials/header.ejs'); -%>
+    <div class="container">
+        <a id="newBookBtn" href="/new">Add a new book</a>
+        <ul id="booksList">
+            <% for(let book of books){ %>
+            <li>
+                <div class="card">
+                    <img src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-L.jpg" alt="Cover of <%= book.title %>"/>
+                    <div class="content">
+                        <h2><%= book.title%></h2>
+                        <small>Read on: <%= book.review_date.toISOString().split('T')[0]%>. Recommendation: <%= book.rating %></small>
+                        <p>
+                            <%= book.review %>
+                        </p>
+                        <a class="edit" href="/edit/<%= book.id %>">Edit</a>
+                        <a class="delete" href="/delete/<%= book.id%>">Delete</a>
+                    </div>
+                </div>     
+                <%}%> 
+            </li> 
+        </ul>
+        
+    </div>
+<%- include('partials/footer.ejs'); -%>

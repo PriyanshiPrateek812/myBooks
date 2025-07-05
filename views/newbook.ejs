@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book</title>
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+    <div class="container">
+        <h1>
+            <%= heading %>
+        </h1>
+        <% if (locals.book){ %>
+            <form id="editForm" method="post" action="/books/<%=book.id %>">
+                <input type="text" name="title" value="<%= book.title %>">
+                <input type="text" name="ISBN" value="<%= isbn %>">
+               <textarea name="review" rows="10"><%= book.review %></textarea> 
+               <input type="date" name="review_date" value="<%=review_date%>" >
+               <input type="number" name="rating" value="<%=book.rating%>" min="1" max="10">
+               <button class="full-width" type="submit">
+          <%= submit %>
+               </button>
+            </form>
+        <%} else {%>
+            <form id="newBookForm" method="post" action="/books">
+                <input type="text" name="title" placeholder="Title" required>
+                <input type="text" name="ISBN" placeholder="Enter ISBN13 without gaps" required>
+               <textarea name="review" rows="10" placeholder="Review" required></textarea> 
+               <input type="date" name="review_date" placeholder="Date of review" required>
+               <input type="number" name="rating" placeholder="Rating on a scale of 1 to 10" min="1" max="10">
+               <button class="full-width" type="submit">
+          <%= submit %>
+               </button>
+            </form>
+        <%}%>
+    </div>
+</body>
+</html>
